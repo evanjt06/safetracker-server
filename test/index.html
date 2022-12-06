@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    const socket = new WebSocket("ws://localhost:8080/")
+    console.log('attempting websocket connection')
+    socket.onopen = () => {
+        console.log("Connected.")
+    }
+    socket.onclose = (event) => {
+        console.log("Closed. ", event)
+    }
+    socket.onmessage = (msg) => {
+        console.log("message: ", msg)
+
+        if (msg.data === "REFRESH") {
+            alert(200)
+        }
+    }
+    socket.onerror = (err) => {
+        console.log("socket error: ", err)
+    }
+</script>
+</body>
+</html>
